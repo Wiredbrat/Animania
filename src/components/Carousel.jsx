@@ -121,7 +121,7 @@ const Carousel = () => {
   }
 
   return (
-    <div className="relative w-full max-w-screen-[1920px] mx-auto h-[350px] sm:h-[400px] md:h-[500px] lg:h-[calc(100vh-100px)] max-h-[700px] overflow-hidden rounded-xl shadow-2xl bg-gray-900 font-poppins">
+    <div className="relative w-full max-w-screen-[1920px] mx-auto h-[350px] sm:h-[400px] md:h-[500px] lg:h-[calc(100vh-100px)] max-h-[700px] overflow-hidden shadow-2xl bg-gray-900 font-poppins">
       {/* Carousel items container */}
       <div className="relative w-full h-full">
         {items.map((item, index) => (
