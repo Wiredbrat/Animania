@@ -103,7 +103,7 @@ function Header() {
       >
       
 
-        <ul className="flex flex-col items-start gap-2 sm:gap-8 text-sm md:text-lg font-light m-auto ">
+        <ul className="flex flex-col items-start gap-2 sm:gap-8 text-sm md:text-lg font-light m-auto" onClick={() => setShowMenu((prev) => !prev)}>
           <NavLink to='/' className={({isActive}) => `hover:text-blue-500 hover:duration-200 ${isActive? 'text-blue-500': 'text-white'}`}>
             <li className="cursor-pointer">Home</li>
           </NavLink>
