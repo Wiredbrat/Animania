@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, useApi, Pagination} from '../Importer';
+import { Card, useApi, Pagination, Loader} from '../Importer';
 
 import { Link } from 'react-router'
 
@@ -7,7 +7,7 @@ function Upcoming() {
   const [page, setPage] = useState(1)
   const {data, loading, error, parentData} = useApi(`https://api.jikan.moe/v4/top/anime?filter=upcoming&page=${page}`)
 
-  if (loading) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-white'>Loading...</p>
+  if (loading) return <Loader/>
   if (error) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-red-500'>something went wrong</p>
   return (
     <>

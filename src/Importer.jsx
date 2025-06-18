@@ -18,6 +18,7 @@ import Carousel from './components/Carousel'
 import Pagination from './components/Pagination'
 import Movies from './templates/Movies'
 import Upcoming from './templates/Upcoming'
+import Loader from './components/Loader'
 
 
-export { Footer, Header, List, Searchbar, TiltCard, Home, DetailPage, Card, Button, useApi, Recommendation, Characters,Airing, MostPopular, TopRated, Trending, Movies, Upcoming, Carousel, Pagination};
+export { Loader, Footer, Header, List, Searchbar, TiltCard, Home, DetailPage, Card, Button, useApi, Recommendation, Characters,Airing, MostPopular, TopRated, Trending, Movies, Upcoming, Carousel, Pagination};

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, useApi, Characters, Recommendation } from '../Importer'
+import { Button, Card, useApi, Characters, Recommendation, Loader } from '../Importer'
 import { useParams } from 'react-router'
 
 
@@ -8,7 +8,7 @@ function DetailPage() {
   const {data, loading, error} = useApi(`https://api.jikan.moe/v4/anime/${id_num}`)
    
 
-  if (loading) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-white'>Loading...</p>
+  if (loading) return <Loader/>
   if (error) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-red-500'>something went wrong</p>
   return (
     <>

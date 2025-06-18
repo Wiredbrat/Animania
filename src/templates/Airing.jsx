@@ -1,11 +1,11 @@
 import {useState} from 'react'
-import { Card, Pagination, useApi } from '../Importer'
+import { Card, Pagination, useApi, Loader} from '../Importer'
 import { Link } from 'react-router'
 
 function Airing() {
   const [page, setPage] = useState(1);
   const {data, loading, error, parentData} = useApi(`https://api.jikan.moe/v4/seasons/now?page=${page}`)
-  if (loading) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-white'>Loading...</p>
+  if (loading) return <Loader/>
   if (error) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-red-500'>something went wrong</p>
   return (
     <>

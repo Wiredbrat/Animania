@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, PlayCircle, Info } from 'lucide-react';
-import { useApi } from '../Importer';
+import { useApi, Loader } from '../Importer';
 import { Link } from 'react-router';
 
 
@@ -117,7 +117,7 @@ const Carousel = () => {
 
 
   if (loading) {
-    return <div className="text-center p-10 text-white">loading...</div>;
+    return <Loader/>;
   }
 
   return (

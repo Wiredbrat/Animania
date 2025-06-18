@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, useApi ,Pagination} from '../Importer';
+import { Card, useApi ,Pagination, Loader} from '../Importer';
 import { Link } from 'react-router';
 import AnimeContext from '../context/AnimeContext';
 import ReactPaginate from 'react-paginate';
@@ -20,12 +20,7 @@ function List() {
     setPage(selectedPage);
   };
 
-  if (loading)
-    return (
-      <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-white'>
-        Loading...
-      </p>
-    );
+  if (loading) return <Loader/>
 
   if (error)
     return (
