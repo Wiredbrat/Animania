@@ -25,7 +25,7 @@ const menuOptions = [
 function RenderList({url}) {
   const {data, loading} = useApi(url)
   const animeData = data || [];
-  if(loading) <Loader/>
+  if(loading) return <div className="animate-spin bg-transparent border-4 rounded-[50%] border-t-slate-100 border-blue-400 text-white h-[40px] w-[40px]"/>
   else return (
     <>
     
