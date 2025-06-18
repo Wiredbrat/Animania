@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState } from 'react'
-import { Carousel, Card, useApi } from '../Importer'
+import { Carousel, Card, useApi, Loader } from '../Importer'
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -25,7 +25,7 @@ const menuOptions = [
 function RenderList({url}) {
   const {data, loading} = useApi(url)
   const animeData = data || [];
-  if(loading) return(<div>loading...</div>)
+  if(loading) <Loader/>
   else return (
     <>
     
