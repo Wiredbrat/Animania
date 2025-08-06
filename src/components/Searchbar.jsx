@@ -7,15 +7,6 @@ function Searchbar({display, hidden}) {
   const [searchResult, setSearchResult] = useState (<></>) 
   const [query, setQuery] = useState('')
   // const [hidden, setHidden] = (true)
-
-  // function debounced(fn, delay) {
-  //   let timer; 
-  //   return (...args) => {
-  //     clearTimeout(timer);
-  //     timer = setTimeout(() => fn(...args), delay)
-  //   }
-  // }
-
  
   const searchFn = async() => {
     try{
