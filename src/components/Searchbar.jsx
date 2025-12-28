@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useMemo} from 'react'
 import { Link } from 'react-router';
 import { useDebounce } from '../utils/useDebounce';
 
@@ -8,8 +8,8 @@ function Searchbar({display, hidden}) {
   const [searchResult, setSearchResult] = useState (<></>) 
   const [query, setQuery] = useState('')
   // const [hidden, setHidden] = (true)
- 
-  const searchFn = async() => {
+  const searchHandler = useMemo(() => {useDebounce(searchFn(query), 400)}, [])
+  const searchFn = async(query) => {
     try{
       const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=15`)
       const data = await response.json()
@@ -63,7 +63,7 @@ function Searchbar({display, hidden}) {
           placeholder='One Piece...'
           onChange={(e) => {
             setQuery(e.target.value);
-            useDebounce(searchFn(query), 300)
+            searchHandler(e.target.value);
           }} 
           onKeyDown={(e) => e.key === 'Enter' && searchFn()}
           className='py-2 text-xl font-mono outline-none bg-transparent text-black w-full'
