@@ -1,7 +1,8 @@
 import { Search } from 'lucide-react';
 import { useState, useEffect} from 'react'
 import { Link } from 'react-router';
-// import { debounce } from 'lodash';
+import { useDebounce } from '../utils/useDebounce';
+
 function Searchbar({display, hidden}) {
   // const searchInput = useRef()
   const [searchResult, setSearchResult] = useState (<></>) 
@@ -43,9 +44,6 @@ function Searchbar({display, hidden}) {
     
   }
   
-  // const searching = debounced(searchFn(), 2000)
-
-
   return (
     <>
     <div className={`w-screen h-screen z-[99999] fixed ${display} duration-300 backdrop-blur-[6px] backdrop-brightness-50 `}
@@ -65,8 +63,7 @@ function Searchbar({display, hidden}) {
           placeholder='One Piece...'
           onChange={(e) => {
             setQuery(e.target.value);
-            // searching();
-            
+            useDebounce(searchFn(query), 300)
           }} 
           onKeyDown={(e) => e.key === 'Enter' && searchFn()}
           className='py-2 text-xl font-mono outline-none bg-transparent text-black w-full'
