@@ -9,6 +9,7 @@ function Searchbar({display, hidden}) {
   const [query, setQuery] = useState('')
   // const [hidden, setHidden] = (true)
   const searchHandler = useMemo(() => {useDebounce(searchFn(query), 400)}, [])
+
   const searchFn = async(query) => {
     try{
       const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=15`)
@@ -62,7 +63,6 @@ function Searchbar({display, hidden}) {
           type='text'
           placeholder='One Piece...'
           onChange={(e) => {
-            setQuery(e.target.value);
             searchHandler(e.target.value);
           }} 
           onKeyDown={(e) => e.key === 'Enter' && searchFn()}
