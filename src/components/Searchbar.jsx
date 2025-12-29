@@ -5,9 +5,7 @@ import useDebounce from '../hooks/useDebounce';
 
 function Searchbar({display, hidden}) {
   const searchInput = useRef(null)
-  const [searchResult, setSearchResult] = useState (<></>) 
-  // const [query, setQuery] = useState('')
-  // const [hidden, setHidden] = (true)
+  const [searchResult, setSearchResult] = useState (<></>)
  
   const searchFn = async(query) => {
     try{

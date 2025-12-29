@@ -14,7 +14,7 @@ const CarouselItem = ({ item, index, isActive }) => (
     <img
       src={item.images?.webp?.large_image_url}
       alt={item.title}
-      className="w-full md:w-[50%] absolute right-0"
+      className="w-full md:w-[40%] absolute right-0"
       onError={(e) => {
         e.target.onerror = null;
         e.target.src = `https://placehold.co/1200x500/202020/FFFFFF?text=Image+Not+Found&font=Inter`;
@@ -23,10 +23,10 @@ const CarouselItem = ({ item, index, isActive }) => (
     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent p-8 md:p-16 lg:p-24 flex flex-col justify-end">
       <div className="max-w-xl text-white">
         <p className="text-sm font-semibold text-pink-400 mb-1 md:mb-2">#{index+1}</p>
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 leading-tight">{item?.title}</h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 leading-tight line-clamp-4">{item?.title}</h2>
         <h2 className="hidden sm:block text-sm font-poppins mb-2 md:mb-3 leading-tight">{item?.title_english}</h2>
         <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4">{item.genres?.type}</p>
-        <p className="text-sm md:text-base text-gray-200 mb-6 md:mb-8 leading-relaxed line-clamp-2">{item.synopsis}</p>
+        <p className="text-sm md:text-base text-gray-200 mb-6 md:mb-8 leading-relaxed line-clamp-3">{item.synopsis}</p>
         <div className="flex space-x-3 md:space-x-4">
           <Link to={item.trailer?.url} target='blank'>
           <button className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg flex items-center space-x-2 transition-colors duration-300 mb-2">
@@ -52,14 +52,13 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [items, setItems] = useState([]);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const autoScrollInterval = 5000; // 5 seconds
-  const transitionDuration = 500; // Must match CSS transition duration
+  const autoScrollInterval = 5000; 
+  const transitionDuration = 1000; 
 
   const timeoutRef = useRef(null);
   const intervalRef = useRef(null);
 
   const {data, loading, error} = useApi(`https://api.jikan.moe/v4/seasons/now?limit=10`)
-  // console.log(data)
   // Prepare items for infinite scroll
   useEffect(() => {
     if (data?.length > 0) {
@@ -84,7 +83,9 @@ const Carousel = () => {
     if (items.length === 0) return;
     
     resetTimeout(); // Clear existing timers
-
+    console.log(currentIndex)
+    console.log(intervalRef.current)
+    
     intervalRef.current = setInterval(() => {
       handleNext();
     }, autoScrollInterval);
@@ -92,21 +93,21 @@ const Carousel = () => {
     return () => {
       resetTimeout(); // Cleanup on unmount
     };
-  }, [items.length, currentIndex, autoScrollInterval]); // Re-run if items or currentIndex changes
+  }, [items.length, currentIndex, intervalRef.current]); // Re-run if items or currentIndex changes
 
   const handleNext = useCallback(() => {
     if (isTransitioning || items.length === 0) return;
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
     setTimeout(() => setIsTransitioning(false), transitionDuration);
-  }, [isTransitioning, items.length]);
+  }, [isTransitioning, currentIndex, items.length]);
 
   const handlePrev = useCallback(() => {
     if (isTransitioning || items.length === 0) return;
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
     setTimeout(() => setIsTransitioning(false), transitionDuration);
-  }, [isTransitioning, items.length]);
+  }, [isTransitioning, currentIndex, items.length]);
 
   const goToSlide = (index) => {
     if (isTransitioning || items.length === 0) return;
