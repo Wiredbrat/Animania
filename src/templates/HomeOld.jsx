@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState } from 'react'
-import { Carousel, Card, useApi } from '../Importer'
+import { Carousel, Card } from '../Importer'
 import { Link } from 'react-router';
+import { useApi } from '../hooks/useApi';
 
 
 function RenderList({url}) {
