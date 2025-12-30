@@ -1,7 +1,7 @@
 import { datalist } from 'framer-motion/client'
 import {useState, useEffect, } from 'react'
 
-function useApi(url) {
+export function useApi(url) {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
@@ -31,5 +31,3 @@ function useApi(url) {
 
   return { data, loading, error, parentData}
 }
-
-export default useApi

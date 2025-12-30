@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, useApi ,Pagination, Loader} from '../Importer';
+import { Card ,Pagination, Loader} from '../Importer';
 import { Link } from 'react-router';
 import AnimeContext from '../context/AnimeContext';
 import ReactPaginate from 'react-paginate';
 import { motion } from 'framer-motion';
+import { useApi } from '../hooks/useApi'
 
 function List() {
   // const { id, setId } = useContext(AnimeContext);
@@ -37,7 +38,7 @@ function List() {
         opacity: 1,
         transition: {duration: 1}
       }}
-      className='pt-[90px] h-auto w-full flex flex-wrap justify-center bg-slate-800 gap-4 text-white'>
+      className='pt-[90px] h-auto w-full flex flex-wrap justify-center bg-zinc-900 gap-4 text-white'>
         {data?.map((anime) => (
           <div className='w-[100px] sm:w-[230px] flex flex-col' key={anime["mal_id"]}>
             <Link to={`/anime/${anime.mal_id}`}>

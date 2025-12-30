@@ -23,7 +23,7 @@ function Header() {
     <>
       
       <Searchbar display={search} hidden={hideSearchElement}/>
-      <div className="grid grid-cols-2 md:grid-cols-3 justify-between items-center w-full h-[50px] md:h-[80px] px-2 md:px-8 bg-slate-800 bg-opacity-20 backdrop-blur-md backdrop-filter fixed z-[2000] ">
+      <div className="grid grid-cols-2 md:grid-cols-3 justify-between items-center w-full h-[50px] md:h-[80px] px-2 md:px-8 bg-zinc-900 bg-opacity-20 backdrop-blur-md backdrop-filter fixed z-[2000] ">
         <span className='w-fit'>
           <Link to='/' className='text-white font-mono font-semibold text-sm xl:text-xl'>
             <span className='rotate-[15deg] inline-block'>A</span>niMani<span className='rotate-[-15deg] inline-block'>A</span>
@@ -140,7 +140,7 @@ function Header() {
         </span> */}
       </div>
       </div>
-      {/* <div className="pt-20 bg-slate-800 text-center text-2xl">
+      {/* <div className="pt-20 bg-zinc-900 text-center text-2xl">
         sss
       </div> */}
     </>
