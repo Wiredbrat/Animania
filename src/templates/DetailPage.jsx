@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Card, useApi, Characters, Recommendation, Loader } from '../Importer'
+import { Button, Card, Characters, Recommendation, Loader } from '../Importer'
 import { useParams } from 'react-router'
+import { useApi } from '../hooks/useApi';
 
 
 function DetailPage() {

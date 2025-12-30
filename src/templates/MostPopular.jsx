@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Card, useApi, Pagination, Loader} from '../Importer';
+import { Card, Pagination, Loader} from '../Importer';
 import { Link } from 'react-router'
+import { useApi } from '../hooks/useApi';
 
 function MostPopular() {
   const [page, setPage] = useState(1)
@@ -10,7 +11,7 @@ function MostPopular() {
   if (error) return <p className='h-screen w-full flex justify-center items-center bg-slate-500 text-red-500'>something went wrong</p>
   return (
     <>
-      <div className='pt-[50px] md:pt-[90px] h-auto w-full flex flex-wrap justify-center bg-slate-800 gap-4 text-white'>
+      <div className='pt-[50px] md:pt-[90px] h-auto w-full flex flex-wrap justify-center bg-zinc-900 gap-4 text-white'>
         <h2 className='text-center bg-pink-600 text-white py-4 md:text-2xl mb-2 w-full text-base'>Most Popular Anime</h2>
        { 
        data.map((anime) => (

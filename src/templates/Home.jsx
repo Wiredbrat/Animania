@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState } from 'react'
-import { Carousel, Card, useApi, Loader } from '../Importer'
+import { Carousel, Card, Loader } from '../Importer'
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion'
+import { useApi } from '../hooks/useApi';
 
 const menuOptions = [
   {

@@ -1,5 +1,6 @@
-import { Card, useApi} from '../Importer';
+import { Card} from '../Importer';
 import { Link } from 'react-router';
+import { useApi } from '../hooks/useApi';
 
 function Characters({charId}) {
   const {data} = useApi(`https://api.jikan.moe/v4/anime/${charId}/characters`)

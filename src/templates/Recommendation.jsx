@@ -1,7 +1,8 @@
 import { useRef } from 'react'
-import { Card, useApi } from '../Importer';
+import { Card } from '../Importer';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from 'react-router';
+import { useApi } from '../hooks/useApi';
 
 function Recommendation({id}) {
   const scrollRef = useRef(null);
