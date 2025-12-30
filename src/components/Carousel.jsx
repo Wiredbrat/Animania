@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, PlayCircle, Info } from 'lucide-react';
-import { useApi, Loader } from '../Importer';
+import { Loader } from '../Importer';
 import { Link } from 'react-router';
-
+import { useApi } from '../hooks/useApi'
 
 const CarouselItem = ({ item, index, isActive }) => (
   
@@ -83,8 +83,6 @@ const Carousel = () => {
     if (items.length === 0) return;
     
     resetTimeout(); // Clear existing timers
-    console.log(currentIndex)
-    console.log(intervalRef.current)
     
     intervalRef.current = setInterval(() => {
       handleNext();
