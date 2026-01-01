@@ -20,10 +20,10 @@ const HorizontalScrollSection = () => {
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
-        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
+        className="hidden md:inline-block absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
         aria-label="Previous slide"
       >
-        <ChevronLeft />
+        <ChevronLeft/>
       </button>
 
       {/* Scrollable Container */}
@@ -57,10 +57,10 @@ const HorizontalScrollSection = () => {
       {/* Right Button */}
       <button
         onClick={() => scroll("right")}
-        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
+        className="hidden md:inline-block absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
         aria-label="next slide"
       >
-        <ChevronRight />
+        <ChevronRight/>
       </button>
     </div>
   );
