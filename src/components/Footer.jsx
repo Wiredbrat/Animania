@@ -21,8 +21,11 @@ function footer() {
           alphabets.map((char) => {
             return (
                 <Link 
+                  onClick={() => window.scrollTo({
+                    top: 0
+                  })}
                   id={`search-by-${char}`} 
-                  to={`https://api.jikan.moe/v4/anime?letter=${char}`} 
+                  to={`/anime/list/${char}`} 
                   className=' text-sm inline-block border py-1 px-2 rounded hover:text-blue-500 hover:scale-[1.02] hover:border-blue-500'> 
                   {char}
                 </Link>

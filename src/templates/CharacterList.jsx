@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Card ,Pagination, Loader} from '../Importer';
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import AnimeContext from '../context/AnimeContext';
 import ReactPaginate from 'react-paginate';
 import { motion } from 'framer-motion';
 import { useApi } from '../hooks/useApi'
 
-function List() {
+function CharacterList() {
   // const { id, setId } = useContext(AnimeContext);
+  const {letter} = useParams();
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const { data, loading, error, parentData } = useApi(`https://api.jikan.moe/v4/anime?page=${page}`);
+  const { data, loading, error, parentData } = useApi(`https://api.jikan.moe/v4/anime?letter=${letter}&page=${page}`);
 
   useEffect(() => {
     setPageCount(parentData.pagination?.last_visible_page || 0);
@@ -66,4 +67,4 @@ function List() {
   );
 }
 
-export default List;
+export default CharacterList;
