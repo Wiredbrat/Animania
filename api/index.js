@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from 'dotenv';
-import { dbConnection } from "./db/dbConnection";
+import { dbConnection } from "./db/dbConnection.ts";
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
