@@ -15,6 +15,7 @@ function Pagination({lastVisiblePage, parentData, onPageChange, page}) {
     <>
      <div className='flex w-full justify-center my-6'>
         <ReactPaginate
+          onClick={() => window.scrollTo({top: 0})}
           breakLabel='...'
           nextLabel='Next >'
           onPageChange={event => onPageChange(event.selected + 1)}

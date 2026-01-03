@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import {DetailPage, Home, List, TopRated, MostPopular, Airing, Trending, Movies, Upcoming} from './Importer.jsx'
+import {DetailPage, Home, List, TopRated, MostPopular, Airing, Trending, Movies, Upcoming, CharacterList } from './Importer.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider,} from 'react-router'
 
 
@@ -18,6 +18,8 @@ const router = createBrowserRouter(
       <Route path={`/anime/trending`} element={<Trending/>}/> 
       <Route path={`/anime/top-movies`} element={<Movies/>}/>
       <Route path={`/anime/upcoming-anime`} element={<Upcoming/>}/>
+      <Route path={`/anime/list/:letter`} element={<CharacterList/>}/>
+      
     </Route>
   )
 )
