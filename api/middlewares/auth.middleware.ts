@@ -1,7 +1,8 @@
 import { asyncHandler } from "../utils/asyncHandler.ts";
 import { User } from '../models/user.model.ts'
 import { ApiError } from "../utils/ApiError.ts";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
 
 asyncHandler(async(req, res, next) => {
   const token = req.cookies.accessToken;
@@ -35,8 +36,8 @@ asyncHandler(async(req, res, next) => {
       throw new ApiError(404, "User not found");
     }
 
-    const updatedRefreshToken = await user.generateRefreshToken();
-    const updatedAccessToken = await user.generateAccessToken();
+    const updatedRefreshToken = user.generateRefreshToken();
+    const updatedAccessToken = user.generateAccessToken();
 
     user.accessToken = updatedAccessToken;
     user.refreshToken = updatedRefreshToken;
