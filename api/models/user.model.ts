@@ -2,7 +2,18 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt, { SignOptions } from "jsonwebtoken";
 
-const userSchema = new Schema({
+interface userType extends Document {
+  username: string;
+  email: string;
+  password: string;
+  accessToken?: string | null;
+  refreshToken?: string | null;
+
+  generateAccessToken(): string;
+  generateRefreshToken(): string;
+}
+
+const userSchema = new Schema<userType>({
   username: {
     type: String,
     unique: true,
@@ -16,7 +27,9 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
+  accessToken: String,
+  refreshToken: String,
 }, {timestamps: true})
 
 const User = mongoose.model("User", userSchema);
@@ -47,4 +60,4 @@ userSchema.methods.generateRefreshToken = function() {
   )
 }
 
-export { User };
+export { User, userType };

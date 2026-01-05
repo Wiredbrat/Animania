@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 export const dbConnection = async(): Promise<void> => {
   try {
     const db = await mongoose.connect(process.env.MONGODB_URI as string, {
-      dbName: process.env.DB_NAME,
+      dbName: process.env.DB_NAME!,
       autoIndex: process.env.ENV !== "Production"
     })
     const dbConnection = mongoose.connection;
