@@ -4,6 +4,7 @@ import { ApiError } from "../utils/ApiError.ts";
 import jwt from "jsonwebtoken";
 import type { JwtPayload } from "jsonwebtoken";
 
+
 asyncHandler(async(req, res, next) => {
   const token = req.cookies.accessToken;
 
@@ -52,7 +53,7 @@ asyncHandler(async(req, res, next) => {
       httpOnly: true,
       secure: true
     })
-
+    req.user = user;
     next();
   }
 }) 
