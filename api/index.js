@@ -10,11 +10,14 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(cors({
-  origin: [`http://localhost:5173`],
+  origin: [process.env.ALLOWED_URL],
   credentials: true
-}))
-app.use(cookieParser())
-// app.use(express.json())
+}));
+app.use(cookieParser());
+app.use(express.json());
+
+// to connect routes to server
+app.use("/api/v1", router);
 
 dbConnection()
 .then(() => {
