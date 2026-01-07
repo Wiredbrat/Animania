@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import type { JwtPayload } from "jsonwebtoken";
 
 
-asyncHandler(async(req, res, next) => {
+export const userAuth = asyncHandler(async(req, res, next) => {
   const token = req.cookies.accessToken;
 
   if(!token) {
