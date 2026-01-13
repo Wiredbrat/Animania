@@ -9,7 +9,7 @@ interface AnimeType extends Document {
   year: number;
   genre: string;
   rating: string;
-  score: Float16Array
+  score: number;
 }
 
 const animeSchema = new Schema<AnimeType>({
@@ -27,7 +27,7 @@ const animeSchema = new Schema<AnimeType>({
   year: Number,
   genre: String,
   rating: String,
-  score: Float16Array,
+  score: Number,
 })
 
 export const AnimeList = mongoose.model("AnimeList", animeSchema);
