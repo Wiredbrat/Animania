@@ -6,7 +6,6 @@ import { asyncHandler } from "../utils/asyncHandler.ts"
 import { ApiResponse } from "../utils/responseHandler.ts";
 import { verifyOTP } from "../utils/verifyOTP.ts";
 
-
 // to create new user
 const userSignUp = asyncHandler(async(req, res) => {
   const {username, email, password} = req.body;
@@ -172,6 +171,7 @@ const addNewAnimeToList = asyncHandler(async(req, res) => {
       score,
     })
   }
+
   const existingAnimeInList = existingUser.animeList.some((anime: AnimeListItems) => {
     const animeDoc = anime.animeId!;
     return animeDoc.malId.toString() === malId
