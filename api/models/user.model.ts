@@ -68,10 +68,15 @@ const User = mongoose.model("User", userSchema);
 // user password encryption
 
 userSchema.pre("save", async function() {
-  if(!this.isModified("password")) return;  
-
-  const saltRounds: number = 10;
-  this.password = await bcrypt.hash(this.password, saltRounds)
+  try {
+    if(this.isModified("password")) return;  
+  
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds)
+    
+  } catch (error) {
+    
+  }
 })
 
 userSchema.methods.verifyPassword = function(password: string): boolean {
