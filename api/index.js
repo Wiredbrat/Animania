@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { dbConnection } from "./db/dbConnection.ts";
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { router } from "./routes/routes.ts";
 
 dotenv.config();
 

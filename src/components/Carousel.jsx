@@ -14,7 +14,7 @@ const CarouselItem = ({ item, index, isActive }) => (
     <img
       src={item.images?.webp?.large_image_url}
       alt={item.title}
-      className="w-full md:w-[40%] absolute right-0"
+      className="w-full sm:w-[40%] absolute right-0"
       onError={(e) => {
         e.target.onerror = null;
         e.target.src = `https://placehold.co/1200x500/202020/FFFFFF?text=Image+Not+Found&font=Inter`;
