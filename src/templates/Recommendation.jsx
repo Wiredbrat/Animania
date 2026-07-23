@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Card } from '../Importer';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from 'react-router';
@@ -6,7 +6,7 @@ import { useApi } from '../hooks/useApi';
 
 function Recommendation({id}) {
   const scrollRef = useRef(null);
-  
+  const [recommendation, setRecommedation] = useState([]);
   const scroll = (direction) => {
     const { current } = scrollRef;
     if (current) {
@@ -18,8 +18,10 @@ function Recommendation({id}) {
     }
   }
 
-  const {data} = useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
-  const recommendation = data;
+  const {data} = await useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
+  useEffect(() => {
+    setRecommendation(data);
+  },[])
   if(recommendation?.length === 0) return
   return (
     <div className="pb-5 relative w-full">
