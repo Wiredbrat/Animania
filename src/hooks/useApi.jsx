@@ -1,7 +1,7 @@
 import { datalist } from 'framer-motion/client'
 import {useState, useEffect, } from 'react'
 
-export async function useApi(url) {
+export function useApi(url) {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])

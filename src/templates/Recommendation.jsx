@@ -18,8 +18,8 @@ function Recommendation({id}) {
     }
   }
 
+  const {data} = useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
   useEffect(async() => {
-    const {data} = await useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
     setRecommendation(data);
   },[])
   if(recommendation?.length === 0) return
@@ -52,7 +52,7 @@ function Recommendation({id}) {
           `}
         </style>
 
-        {recommendation.map((anime) => (
+        {recommendation?.map((anime) => (
         <div key={anime.entry?.['mal_id']} className='flex flex-col gap-y-1 text-white hover:scale-105 duration-300 w-[110px] md:w-[220px]'>
           <Link to={`/anime/${anime.entry?.mal_id}`}>
             <Card 
