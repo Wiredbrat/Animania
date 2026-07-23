@@ -18,8 +18,8 @@ function Recommendation({id}) {
     }
   }
 
-  const {data} = await useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
-  useEffect(() => {
+  useEffect(async() => {
+    const {data} = await useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
     setRecommendation(data);
   },[])
   if(recommendation?.length === 0) return
