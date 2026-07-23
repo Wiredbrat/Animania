@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router';
 import useDebounce from '../hooks/useDebounce';
 
-function Searchbar({display, hidden}) {
+function Searchbar({display="false", hidden}) {
   const searchInput = useRef(null)
   const [searchResult, setSearchResult] = useState (<></>)
  
@@ -52,10 +52,11 @@ function Searchbar({display, hidden}) {
 
   return (
     <>
-    <div className={`w-screen h-screen z-[99999] fixed ${display} duration-300 backdrop-blur-[6px] backdrop-brightness-50 `}
-    onClick={() => {
-      hidden()
-    }}
+    <div 
+      className={`w-screen h-screen z-[99999] fixed ${display} duration-300 backdrop-blur-[6px] backdrop-brightness-50`}
+      onClick={() => {
+        hidden()
+      }}
     >
     </div>
     <div className={`fixed ${display} z-[999999] px-3 max-w-screen-sm w-full flex-col items-center justify-center left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]`}>
@@ -68,7 +69,7 @@ function Searchbar({display, hidden}) {
           onChange={handleSearch}
           onKeyDown={(e) => e.key === 'Enter' && searchFn(searchInput.current.value)}
           className='py-2 text-xl font-mono outline-none bg-transparent text-black w-full'
-          />
+        />
         
         {/* <Link to={`/search?${searchInput.current?.value}`} > */}
         <span

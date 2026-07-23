@@ -17,21 +17,23 @@ const userSignUp = asyncHandler(async(req, res) => {
   const user = await User.findOne(
     {$or: [{ username }, { email }]}
   )
-
+  console.log(user);
   if(user) {
-    return new ApiError(409, "user already exists")
+    throw new ApiError(409, "user already exists")
   }
-  const isVerified = verifyOTP;  
+  // const isVerified = verifyOTP;  
 
-  if(!isVerified) {
-    throw new ApiError(401, "User verfication failed");
-  }
+  // if(!isVerified) {
+  //   throw new ApiError(401, "User verfication failed");
+  // }
 
   const newUser = await User.create({
     username,
     email,
     password,
   })
+
+  newUser.save();
   
   if(!newUser) {
     throw new ApiError(500, "error while user signup");
@@ -46,14 +48,14 @@ const userSignUp = asyncHandler(async(req, res) => {
 const userLogin = asyncHandler(async(req, res) => {
   const { username, password } = req.body;
 
-  const user = await User.findOne({username})
+  const user = await User.findOne({username}).select("-password");
 
   if (!user) {
     throw new ApiError(404, "User not found")
   }
 
   const isPasswordCorrect = user.verifyPassword(password);
-
+  console.log(isPasswordCorrect);
   if(!isPasswordCorrect) {
     throw new ApiError(401, "password not correct");
   }
@@ -66,20 +68,20 @@ const userLogin = asyncHandler(async(req, res) => {
   user.save();
 
   res.cookie("accessToken", accessToken, {
-    httpOnly: true,
-    secure: true
+    httpOnly: process.env.ENV === 'production',
+    secure: process.env.ENV === 'production'
   })
 
   res.cookie("refreshToken", refreshToken, {
-    httpOnly: true,
-    secure: true
+    httpOnly: process.env.ENV === 'production',
+    secure: process.env.ENV === 'production'
   })
 
   return res
   .status(200)
   .json(new ApiResponse(200,
     "User login successful",
-    user
+    user.isSelected
   )
 )})
 

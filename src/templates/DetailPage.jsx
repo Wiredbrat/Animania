@@ -16,7 +16,6 @@ function DetailPage() {
       <section className={` h-max w-full text-white bg-[url(frontend/src/assets/shoto_todoroki.jpg)] bg-cover`}>
         <div className={`pt-[60px] pb-[20px] sm:py-[70px] md:py-[100px] w-full bg-black bg-opacity-70 backdrop-blur-sm flex justify-center items-center`}>
           <div className='flex flex-wrap md:flex-nowrap flex-col sm:flex-row gap-4 md:gap-8 justify-center items-center sm:items-start md:flex-1'>
-
             <Card 
             height={`h-[250px] sm:h-auto`} 
             width={`w-[auto] sm:w-[auto] xl:w-[auto]`} 

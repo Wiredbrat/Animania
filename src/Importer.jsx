@@ -21,5 +21,6 @@ const Movies = lazy(() => import('./templates/Movies'));
 const Upcoming = lazy(() => import('./templates/Upcoming'));
 const Loader = lazy(() => import('./components/Loader'));
 const CharacterList = lazy(() => import('./templates/CharacterList'));
-
-export { Loader, Footer, Header, List, Searchbar, TiltCard, Home, DetailPage, Card, Button, Recommendation, Characters,Airing, MostPopular, TopRated, Trending, Movies, Upcoming, Carousel, Pagination, CharacterList };
+const LoginPage = lazy(() => import('./templates/LoginPage'));
+const User = lazy(() => import('./templates/User'))
+export { Loader, Footer, Header, List, Searchbar, TiltCard, Home, DetailPage, Card, Button, Recommendation, Characters,Airing, MostPopular, TopRated, Trending, Movies, Upcoming, Carousel, Pagination, CharacterList, LoginPage, User };

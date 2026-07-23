@@ -27,7 +27,7 @@ function Recommendation({id}) {
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
-        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/60 hover:bg-black/90 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
+        className="hidden md:inline-block absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/60 hover:bg-black/90 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
       >
         <ChevronLeft />
       </button>
@@ -51,10 +51,10 @@ function Recommendation({id}) {
         </style>
 
         {recommendation.map((anime) => (
-        <div key={anime.entry?.['mal_id']} className='flex flex-col gap-y-1 text-white hover:scale-105 duration-300 w-[110px] md:w-[220px]'>
-          <Link to={`/anime/${anime.entry?.mal_id}`}>
+        <div key={anime?.entry?.['mal_id']} className='flex flex-col gap-y-1 text-white hover:scale-105 duration-300 w-[110px] md:w-[220px]'>
+          <Link to={`/anime/${anime?.entry?.mal_id}`}>
             <Card 
-              id={anime.entry?.['mal_id']}
+              id={anime?.entry?.['mal_id']}
               bgImage={anime.entry?.images?.webp?.image_url} 
               height={"h-[150px] sm:h-[300px]"}
               width={"w-[110px] sm:w-[200px]"}
@@ -69,7 +69,7 @@ function Recommendation({id}) {
       {/* Right Button */}
       <button
         onClick={() => scroll("right")}
-         className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black/60 hover:bg-black/90 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
+         className="hidden md:inline-block absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black/60 hover:bg-black/90 text-white p-2 md:p-3 rounded-full z-20 transition-colors duration-300"
       >
         <ChevronRight />
       </button>

@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import type { SignOptions } from "jsonwebtoken";
 import { AnimeList } from "./anime.model.ts";
+import { ApiError } from "../utils/ApiError.ts";
 
 interface AnimeListItems {
   animeId?: Types.ObjectId;
@@ -62,20 +63,17 @@ const userSchema = new Schema<UserType>({
   }
 }, {timestamps: true})
 
-const User = mongoose.model("User", userSchema);
-
-
 // user password encryption
 
 userSchema.pre("save", async function() {
   try {
-    if(this.isModified("password")) return;  
+    if(!this.isModified("password")) return;  
   
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds)
     
   } catch (error) {
-    
+    throw new ApiError(500, "error while password encryption");
   }
 })
 
@@ -98,6 +96,8 @@ userSchema.methods.generateRefreshToken = function() {
     {expiresIn: process.env.JWT_REFRESH_EXPIRY} as SignOptions
   )
 }
+
+const User = mongoose.model<UserType>("User", userSchema);
 
 export { User };
 export type { UserType, AnimeListItems };

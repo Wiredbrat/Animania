@@ -24,7 +24,8 @@ function Airing() {
           width={"w-[110px] sm:w-[230px]"}
           tags={anime.genres[0]?.name}
           id={anime["mal_id"]}
-          // title={anime.titles[0].title}
+          hoverCard={true}
+          title={anime.titles[0].title}
           />
           <span className='text-[12px] md:text-base line-clamp-1'>{anime.titles[0]?.title}</span>
           </Link>

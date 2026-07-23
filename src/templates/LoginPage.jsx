@@ -1,13 +1,15 @@
 import { Loader2, LucideEye, LucideEyeClosed } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import toast, { Toaster } from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { apiRoutes } from "../api/api.js";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext.jsx";
 
-export default function LoginPage({display, hidden}) {
+export default function LoginPage({display='false', hidden}) {
+  const {userLogin, setIsAuth, isAuth} = useContext(AuthContext);
   const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
   const [ isLogin, setIsLogin ] = useState(true);
   const [ isLoading, setIsLoading ] = useState(false);
@@ -27,27 +29,38 @@ export default function LoginPage({display, hidden}) {
     register, 
     handleSubmit, 
     watch,
+    reset,
     formState: {errors}
   } = useForm({
     resolver: zodResolver(isLogin ? userLoginSchema : userSignupSchema),
   })
+  const controller = new AbortController();
 
   const onSubmit = async (data, e) => {
-    e.preventDefault();
     console.log(data);
     try {
       setIsLoading(true)
       let response;
       if(isLogin) {
-        response = await axios.post(apiRoutes.login, data, {withCredential: true})
+        // response = await axios.post(apiRoutes.login, data, {withCredentials: true, signal: controller.signal})
+        response = userLogin();
       }else{
-        response = await axios.post(apiRoutes.signUp, data, {withCredential: true})
+        response = await axios.post(apiRoutes.signUp, data, {withCredentials: true})
       }
       console.log(response);
 
       if(response.data.statusCode === 201) {
         console.log('user successful')
         !isLogin && setIsLogin(true);
+        !isAuth && setIsAuth(true)
+        reset();
+        hidden();
+      }else if(response.data.statusCode === 200) {
+        console.log('user successfully login')
+        !isLogin && setIsLogin(true);
+        !isAuth && setIsAuth(true)       
+        reset();
+        hidden();
       }
     }catch (error) {
       console.log('Error: ', error)
@@ -74,6 +87,16 @@ export default function LoginPage({display, hidden}) {
       toast.error(error.message);
     });
   }, [errors]);
+
+  // CLEAN UP FUNCTION FOR LOGIN COMPONENT
+  useEffect(() => {
+    return () => {
+      reset();
+      controller.abort()
+      setIsLoading(false);
+      toast.dismiss();
+    }
+  },[display])
 
   return (
     <>

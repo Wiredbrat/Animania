@@ -15,7 +15,7 @@ function Trending() {
         <h2 className='text-center bg-pink-500 text-white py-4 md:text-2xl mb-2 w-full text-base'>Trending Anime</h2>
        { 
        data?.map((anime) => (
-        <div className={`${anime.genres[0]?.name === "Hentai" && 'hidden'} w-[100px] sm:w-[230px] flex flex-col hover:scale-105 duration-300`} key={anime["mal_id"]}>
+        <div className={`${anime.genres[0]?.name === "Hentai" } w-[100px] sm:w-[230px] flex flex-col hover:scale-105 duration-300`} key={anime["mal_id"]}>
           <Link to={`/anime/${anime.mal_id}`}>
           {/* {console.log(id)} */}
           <Card 

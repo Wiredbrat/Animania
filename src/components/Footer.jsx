@@ -16,14 +16,15 @@ function footer() {
         <p className='inline-block'>Search anime by alphabet name A to Z.</p>
       </div>
 
-      <ul className='px-3 flex flex-wrap w-full gap-3'>
+      <ul className='px-3 flex flex-wrap w-full gap-3 mb-4'>
         {
-          alphabets.map((char) => {
+          alphabets.map((char, key) => {
             return (
                 <Link 
                   onClick={() => window.scrollTo({
                     top: 0
                   })}
+                  key={`${key}-${char}`}
                   id={`search-by-${char}`} 
                   to={`/anime/list/${char}`} 
                   className=' text-sm inline-block border py-1 px-2 rounded hover:text-blue-500 hover:scale-[1.02] hover:border-blue-500'> 

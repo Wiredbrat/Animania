@@ -1,8 +1,9 @@
-import React, {useEffect, useRef, useState } from 'react'
+import React, {useEffect, useRef, useState, useContext } from 'react'
 import { Carousel, Card, Loader } from '../Importer'
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApi } from '../hooks/useApi';
+import { AuthContext } from '../context/AuthContext';
 
 const menuOptions = [
   {
@@ -24,6 +25,9 @@ const menuOptions = [
 ]
 
 function RenderList({url}) {
+  const { userData } = useContext(AuthContext);
+  
+  console.log(userData)
   const {data, loading} = useApi(url)
   const animeData = data || [];
   if(loading) return <div className="animate-spin bg-transparent border-4 rounded-[50%] border-t-slate-100 border-blue-400 text-white h-[40px] w-[40px]"/>

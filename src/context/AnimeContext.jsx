@@ -1,6 +1,6 @@
 import { createContext, useState } from "react"
 
-const AnimeContext = createContext()
+const AnimeContext = createContext();
 export const AnimeProvider = ({children}) => {
   const [id, setId] = useState('this')
   return (
