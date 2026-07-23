@@ -20,7 +20,7 @@ function Recommendation({id}) {
 
   const {data} = useApi(`https://api.jikan.moe/v4/anime/${id}/recommendations`)
   const recommendation = data;
-  if(recommendation.length === 0) return
+  if(recommendation?.length === 0) return
   return (
     <div className="pb-5 relative w-full">
       <h2 className='text-center bg-pink-500 text-white py-4 text-2xl mb-2'>Also Watch This</h2>
